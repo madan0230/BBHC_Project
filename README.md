@@ -1,2 +1,2 @@
 # BBHC_Project
-This about my College project 
+This my first and simple project about my College.
