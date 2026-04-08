@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>DR B.B.HEGDE FIRST GRADE COLLEGE</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Playfair+Display:ital,wght@0,700;1,700&family=Cormorant+Garamond:ital,wght@0,600;1,600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --red: #c0152a;
+    --dark-red: #8a0e1d;
+    --gold: #f5c842;
+    --black: #0a0a0a;
+    --white: #ffffff;
+    --cream: #fdf6e3;
+    --gray-light: #f0ece4;
+  }
+
+  body {
+    font-family: 'Cormorant Garamond', serif;
+    background: var(--black);
+    color: var(--white);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ─── PAGE SYSTEM ─── */
+  .page { display: none; min-height: 100vh; }
+  .page.active { display: flex; flex-direction: column; }
+
+  /* ══════════════════════════════
+     PAGE 1 — HOME
+  ══════════════════════════════ */
+  #page-home {
+    background:
+      radial-gradient(ellipse at 20% 30%, rgba(192,21,42,0.18) 0%, transparent 55%),
+      radial-gradient(ellipse at 80% 70%, rgba(245,200,66,0.10) 0%, transparent 50%),
+      linear-gradient(160deg, #111 0%, #1a1a1a 40%, #0d0d0d 100%);
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 40px 20px;
+  }
+
+  /* noise texture overlay */
+  #page-home::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.35;
+  }
+
+  .home-inner { position: relative; z-index: 1; max-width: 900px; margin: auto; }
+
+  /* decorative top rule */
+  .deco-bar {
+    display: flex; align-items: center; gap: 14px;
+    justify-content: center; margin-bottom: 30px;
+  }
+  .deco-bar span { display: block; height: 2px; flex: 1; max-width: 120px; }
+  .deco-bar .line-red { background: var(--red); }
+  .deco-bar .line-gold { background: var(--gold); }
+  .deco-bar .diamond {
+    width: 10px; height: 10px; background: var(--gold);
+    transform: rotate(45deg); flex-shrink: 0;
+  }
+
+  .emblem {
+    width: 100px; height: 100px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #fff9e6 0%, #f5c842 50%, #c0152a 100%);
+    border: 4px solid var(--gold);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 28px;
+    font-size: 2.4rem;
+    box-shadow: 0 0 30px rgba(245,200,66,0.4), 0 0 60px rgba(192,21,42,0.2);
+    animation: pulse-glow 3s ease-in-out infinite;
+  }
+  @keyframes pulse-glow {
+    0%,100% { box-shadow: 0 0 30px rgba(245,200,66,0.4), 0 0 60px rgba(192,21,42,0.2); }
+    50% { box-shadow: 0 0 50px rgba(245,200,66,0.7), 0 0 90px rgba(192,21,42,0.35); }
+  }
+
+  .college-name {
+    font-family: 'Dancing Script', cursive;
+    font-weight: 700;
+    font-size: clamp(2rem, 6vw, 4rem);
+    color: var(--white);
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    line-height: 1.2;
+    text-shadow:
+      0 0 20px rgba(245,200,66,0.5),
+      2px 2px 0 var(--dark-red);
+    animation: fade-up 1s ease both;
+  }
+  .college-name .highlight { color: var(--gold); }
+
+  .college-sub {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(0.65rem, 1.8vw, 0.95rem);
+    color: rgba(255,255,255,0.85);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-top: 14px;
+    line-height: 1.8;
+    animation: fade-up 1s ease 0.2s both;
+  }
+  .college-sub em {
+    color: var(--gold);
+    font-style: normal;
+    font-weight: 700;
+  }
+
+  .badges {
+    display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+    margin: 22px 0 36px;
+    animation: fade-up 1s ease 0.4s both;
+  }
+  .badge {
+    background: rgba(192,21,42,0.2);
+    border: 1px solid rgba(192,21,42,0.5);
+    color: var(--white);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.72rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 2px;
+  }
+  .badge.gold {
+    background: rgba(245,200,66,0.12);
+    border-color: rgba(245,200,66,0.45);
+    color: var(--gold);
+  }
+
+  .enter-btn {
+    display: inline-block;
+    padding: 16px 52px;
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--white);
+    background: linear-gradient(135deg, var(--red) 0%, var(--dark-red) 100%);
+    border: 2px solid var(--gold);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.3s;
+    animation: fade-up 1s ease 0.6s both;
+  }
+  .enter-btn::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, transparent 60%);
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .enter-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(192,21,42,0.5); }
+  .enter-btn:hover::before { opacity: 1; }
+
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ══════════════════════════════
+     PAGE 2 — MENU
+  ══════════════════════════════ */
+  #page-menu {
+    background:
+      linear-gradient(175deg, #0a0a0a 0%, #1a0505 45%, #0a0a0a 100%);
+    position: relative;
+    justify-content: center; align-items: center; gap: 0;
+  }
+  #page-menu::after {
+    content: '';
+    position: absolute;
+    left: 50%; top: 0; bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, var(--red), transparent);
+    opacity: 0.3;
+  }
+
+  .menu-header {
+    text-align: center;
+    padding: 40px 20px 20px;
+    animation: fade-up 0.8s ease both;
+  }
+  .menu-header h2 {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(0.8rem, 2.5vw, 1.2rem);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  .menu-header p {
+    color: rgba(255,255,255,0.45);
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    margin-top: 6px;
+  }
+
+  .menu-cards {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 24px 60px;
+    width: 100%;
+    max-width: 520px;
+    margin: auto;
+  }
+
+  .menu-card {
+    width: 100%;
+    padding: 28px 36px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(192,21,42,0.35);
+    border-left: 4px solid var(--red);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s;
+    animation: slide-in 0.6s ease both;
+  }
+  .menu-card:nth-child(1) { animation-delay: 0.1s; }
+  .menu-card:nth-child(2) { animation-delay: 0.25s; }
+  .menu-card:nth-child(3) { animation-delay: 0.4s; }
+
+  .menu-card::before {
+    content: '';
+    position: absolute; left: 0; top: 0; bottom: 0;
+    width: 0;
+    background: rgba(192,21,42,0.12);
+    transition: width 0.4s ease;
+  }
+  .menu-card:hover { border-color: var(--gold); transform: translateX(6px); }
+  .menu-card:hover::before { width: 100%; }
+
+  .menu-card .num {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 0.6rem;
+    color: var(--red);
+    letter-spacing: 3px;
+    margin-bottom: 8px;
+  }
+  .menu-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(1.6rem, 5vw, 2.4rem);
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--white);
+    letter-spacing: 4px;
+    position: relative; z-index: 1;
+  }
+  .menu-card .arrow {
+    position: absolute; right: 24px; top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.5rem; color: var(--red);
+    transition: right 0.3s, color 0.3s;
+  }
+  .menu-card:hover .arrow { right: 16px; color: var(--gold); }
+
+  @keyframes slide-in {
+    from { opacity: 0; transform: translateX(-30px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  /* BACK BUTTON */
+  .back-btn {
+    position: fixed; top: 20px; left: 20px; z-index: 999;
+    background: rgba(0,0,0,0.7);
+    border: 1px solid var(--red);
+    color: var(--white);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    padding: 8px 18px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: none;
+  }
+  .back-btn.visible { display: block; }
+  .back-btn:hover { background: var(--red); }
+
+  /* ══════════════════════════════
+     FORM PAGES (Faculty/Student/Others)
+  ══════════════════════════════ */
+  .form-page {
+    background:
+      radial-gradient(ellipse at top left, rgba(192,21,42,0.15) 0%, transparent 50%),
+      linear-gradient(170deg, #0d0d0d 0%, #111 100%);
+    justify-content: flex-start;
+    align-items: center;
+    padding: 80px 20px 60px;
+  }
+
+  .form-container {
+    width: 100%; max-width: 620px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(192,21,42,0.3);
+    border-top: 3px solid var(--red);
+    padding: 40px 36px;
+    animation: fade-up 0.6s ease both;
+  }
+
+  .form-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(1.1rem, 3vw, 1.5rem);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--white);
+    text-align: center;
+    margin-bottom: 6px;
+  }
+  .form-subtitle {
+    text-align: center;
+    color: var(--red);
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+  }
+
+  .form-group { margin-bottom: 22px; }
+  .form-group label {
+    display: block;
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 0.62rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+  .form-group input, .form-group textarea, .form-group select {
+    width: 100%;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-bottom: 2px solid rgba(192,21,42,0.5);
+    color: var(--white);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    padding: 12px 14px;
+    outline: none;
+    transition: all 0.3s;
+  }
+  .form-group input:focus, .form-group textarea:focus {
+    border-color: var(--gold);
+    background: rgba(255,255,255,0.08);
+  }
+  .form-group input::placeholder { color: rgba(255,255,255,0.3); font-style: italic; }
+  .form-group textarea { resize: vertical; min-height: 90px; }
+
+  .counter-badge {
+    text-align: right;
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 1px;
+    margin-bottom: 28px;
+  }
+  .counter-badge strong { color: var(--gold); }
+
+  .submit-btn {
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(135deg, var(--red), var(--dark-red));
+    border: 1px solid var(--gold);
+    color: var(--white);
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .submit-btn:hover { background: linear-gradient(135deg, #e0192f, var(--red)); box-shadow: 0 6px 24px rgba(192,21,42,0.5); }
+  .submit-btn:disabled {
+    background: #333; border-color: #555;
+    color: #888; cursor: not-allowed;
+  }
+
+  /* SUCCESS MODAL */
+  .modal-overlay {
+    display: none; position: fixed; inset: 0; z-index: 9999;
+    background: rgba(0,0,0,0.85);
+    justify-content: center; align-items: center;
+  }
+  .modal-overlay.show { display: flex; }
+  .modal-box {
+    background: linear-gradient(135deg, #1a0505, #0d0d0d);
+    border: 2px solid var(--gold);
+    padding: 50px 40px;
+    text-align: center;
+    max-width: 420px; width: 90%;
+    animation: pop-in 0.4s cubic-bezier(.2,1.6,.5,1) both;
+  }
+  @keyframes pop-in {
+    from { opacity: 0; transform: scale(0.7); }
+    to { opacity: 1; transform: scale(1); }
+  }
+  .modal-icon { font-size: 3rem; margin-bottom: 16px; }
+  .modal-msg {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 1rem;
+    color: var(--white);
+    letter-spacing: 2px;
+    line-height: 1.6;
+    margin-bottom: 24px;
+  }
+  .modal-msg span { color: var(--gold); display: block; margin-top: 8px; }
+  .modal-close {
+    padding: 12px 36px;
+    background: var(--red);
+    border: 1px solid var(--gold);
+    color: var(--white);
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .modal-close:hover { background: var(--dark-red); }
+
+  /* FULL CAPACITY */
+  .full-notice {
+    text-align: center;
+    padding: 20px;
+    color: var(--red);
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    border: 1px solid var(--red);
+    margin-bottom: 20px;
+    display: none;
+  }
+
+  /* scroll */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: #111; }
+  ::-webkit-scrollbar-thumb { background: var(--red); }
+
+  @media (max-width: 500px) {
+    .form-container { padding: 28px 18px; }
+    .menu-card h3 { font-size: 1.4rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════ BACK BUTTON ══════ -->
+<button class="back-btn" id="backBtn" onclick="goBack()">← BACK</button>
+
+<!-- ══════════════════════════════
+     PAGE 1 — HOME
+══════════════════════════════ -->
+<div class="page active" id="page-home">
+  <div class="home-inner">
+    <div class="deco-bar">
+      <span class="line-red"></span>
+      <div class="diamond"></div>
+      <span class="line-gold"></span>
+      <div class="diamond"></div>
+      <span class="line-red"></span>
+    </div>
+
+    <div class="emblem">🎓</div>
+
+    <h1 class="college-name">
+      DR <span class="highlight">B.B.HEGDE</span><br/>FIRST GRADE COLLEGE<br/>KUNDAPURA
+    </h1>
+
+    <p class="college-sub">
+      ACCREDITED BY <em>NAAC</em> &nbsp;|&nbsp; AFFILIATED TO <em>MANGALORE UNIVERSITY</em><br/>
+      A UNIT OF <em>COONDAPURA EDUCATION SOCIETY (R.), KUNDAPURA</em>
+    </p>
+
+    <div class="badges">
+      <div class="badge gold">NAAC ACCREDITED</div>
+      <div class="badge">MANGALORE UNIVERSITY</div>
+      <div class="badge">EST. KUNDAPURA</div>
+    </div>
+
+    <button class="enter-btn" onclick="goTo('page-menu')">ENTER PORTAL</button>
+
+    <div class="deco-bar" style="margin-top:36px">
+      <span class="line-red"></span>
+      <div class="diamond"></div>
+      <span class="line-gold"></span>
+      <div class="diamond"></div>
+      <span class="line-red"></span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════
+     PAGE 2 — MENU
+══════════════════════════════ -->
+<div class="page" id="page-menu">
+  <div class="menu-header">
+    <h2>SELECT YOUR CATEGORY</h2>
+    <p>CHOOSE ONE TO REGISTER</p>
+  </div>
+
+  <div class="menu-cards">
+    <div class="menu-card" onclick="goTo('page-faculty')">
+      <div class="num">01 / 03</div>
+      <h3>FACULTYS</h3>
+      <span class="arrow">›</span>
+    </div>
+    <div class="menu-card" onclick="goTo('page-student')">
+      <div class="num">02 / 03</div>
+      <h3>STUDENTS</h3>
+      <span class="arrow">›</span>
+    </div>
+    <div class="menu-card" onclick="goTo('page-others')">
+      <div class="num">03 / 03</div>
+      <h3>OTHERS</h3>
+      <span class="arrow">›</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════
+     PAGE 3 — FACULTY FORM
+══════════════════════════════ -->
+<div class="page form-page" id="page-faculty">
+  <div class="form-container">
+    <h2 class="form-title">FACULTY DETAILS</h2>
+    <p class="form-subtitle">DR B.B.HEGDE FIRST GRADE COLLEGE</p>
+
+    <div class="full-notice" id="faculty-full">⚠ REGISTRATIONS FULL — CAPACITY REACHED (100/100)</div>
+
+    <div class="form-group">
+      <label>NAME</label>
+      <input type="text" id="f-name" placeholder="Enter full name"/>
+    </div>
+    <div class="form-group">
+      <label>DATE OF BIRTH</label>
+      <input type="date" id="f-dob"/>
+    </div>
+    <div class="form-group">
+      <label>COMBINATION / SUBJECT</label>
+      <input type="text" id="f-combo" placeholder="e.g. Mathematics, Physics"/>
+    </div>
+    <div class="form-group">
+      <label>ACHIEVEMENTS</label>
+      <textarea id="f-achieve" placeholder="List your achievements..."></textarea>
+    </div>
+    <div class="form-group">
+      <label>WORKING EXPERIENCE</label>
+      <input type="text" id="f-exp" placeholder="e.g. 5 Years in Education"/>
+    </div>
+
+    <div class="counter-badge">
+      REGISTERED: <strong id="f-count">0</strong> / 100
+    </div>
+
+    <button class="submit-btn" id="f-submit" onclick="submitForm('faculty')">SUBMIT</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════
+     PAGE 4 — STUDENT FORM
+══════════════════════════════ -->
+<div class="page form-page" id="page-student">
+  <div class="form-container">
+    <h2 class="form-title">STUDENT DETAILS</h2>
+    <p class="form-subtitle">DR B.B.HEGDE FIRST GRADE COLLEGE</p>
+
+    <div class="full-notice" id="student-full">⚠ REGISTRATIONS FULL — CAPACITY REACHED (2000/2000)</div>
+
+    <div class="form-group">
+      <label>NAME</label>
+      <input type="text" id="s-name" placeholder="Enter full name"/>
+    </div>
+    <div class="form-group">
+      <label>COMBINATION</label>
+      <input type="text" id="s-combo" placeholder="e.g. PCM, PCMB, Arts"/>
+    </div>
+    <div class="form-group">
+      <label>ROLL NUMBER</label>
+      <input type="text" id="s-roll" placeholder="Enter roll number"/>
+    </div>
+    <div class="form-group">
+      <label>DATE OF BIRTH</label>
+      <input type="date" id="s-dob"/>
+    </div>
+    <div class="form-group">
+      <label>EMAIL</label>
+      <input type="email" id="s-email" placeholder="yourname@example.com"/>
+    </div>
+
+    <div class="counter-badge">
+      REGISTERED: <strong id="s-count">0</strong> / 2000
+    </div>
+
+    <button class="submit-btn" id="s-submit" onclick="submitForm('student')">SUBMIT</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════
+     PAGE 5 — OTHERS FORM
+══════════════════════════════ -->
+<div class="page form-page" id="page-others">
+  <div class="form-container">
+    <h2 class="form-title">OTHERS DETAILS</h2>
+    <p class="form-subtitle">DR B.B.HEGDE FIRST GRADE COLLEGE</p>
+
+    <div class="full-notice" id="others-full">⚠ REGISTRATIONS FULL — CAPACITY REACHED (50/50)</div>
+
+    <div class="form-group">
+      <label>NAME</label>
+      <input type="text" id="o-name" placeholder="Enter full name"/>
+    </div>
+    <div class="form-group">
+      <label>WORK / DESIGNATION</label>
+      <input type="text" id="o-work" placeholder="e.g. Administrative Staff, Vendor..."/>
+    </div>
+
+    <div class="counter-badge">
+      REGISTERED: <strong id="o-count">0</strong> / 50
+    </div>
+
+    <button class="submit-btn" id="o-submit" onclick="submitForm('others')">SUBMIT</button>
+  </div>
+</div>
+
+<!-- ══════ SUCCESS MODAL ══════ -->
+<div class="modal-overlay" id="successModal">
+  <div class="modal-box">
+    <div class="modal-icon">✅</div>
+    <div class="modal-msg">
+      SUBMITTED SUCCESSFULLY
+      <span id="modal-welcome-msg">WELCOME TO OUR FAMILY.</span>
+    </div>
+    <button class="modal-close" onclick="closeModal()">OK</button>
+  </div>
+</div>
+
+<script>
+  // ── Data store (in-memory, browser session) ──
+  const LIMITS = { faculty: 100, student: 2000, others: 50 };
+  const data = { faculty: [], student: [], others: [] };
+
+  // Page history for back navigation
+  const history = [];
+
+  function goTo(pageId) {
+    const current = document.querySelector('.page.active');
+    if (current) {
+      history.push(current.id);
+      current.classList.remove('active');
+    }
+    document.getElementById(pageId).classList.add('active');
+    window.scrollTo(0, 0);
+    document.getElementById('backBtn').classList.toggle('visible', history.length > 0);
+    updateCounters();
+    checkCapacity();
+  }
+
+  function goBack() {
+    if (history.length === 0) return;
+    document.querySelector('.page.active').classList.remove('active');
+    const prev = history.pop();
+    document.getElementById(prev).classList.add('active');
+    window.scrollTo(0, 0);
+    document.getElementById('backBtn').classList.toggle('visible', history.length > 0);
+  }
+
+  function updateCounters() {
+    document.getElementById('f-count').textContent = data.faculty.length;
+    document.getElementById('s-count').textContent = data.student.length;
+    document.getElementById('o-count').textContent = data.others.length;
+  }
+
+  function checkCapacity() {
+    // Faculty
+    const fFull = data.faculty.length >= LIMITS.faculty;
+    document.getElementById('faculty-full').style.display = fFull ? 'block' : 'none';
+    document.getElementById('f-submit').disabled = fFull;
+
+    // Student
+    const sFull = data.student.length >= LIMITS.student;
+    document.getElementById('student-full').style.display = sFull ? 'block' : 'none';
+    document.getElementById('s-submit').disabled = sFull;
+
+    // Others
+    const oFull = data.others.length >= LIMITS.others;
+    document.getElementById('others-full').style.display = oFull ? 'block' : 'none';
+    document.getElementById('o-submit').disabled = oFull;
+  }
+
+  function submitForm(type) {
+    if (data[type].length >= LIMITS[type]) {
+      alert('Registration capacity is full!');
+      return;
+    }
+
+    let record = {};
+    let valid = true;
+    let welcomeMsg = 'WELCOME TO OUR FAMILY.';
+
+    if (type === 'faculty') {
+      const name    = document.getElementById('f-name').value.trim();
+      const dob     = document.getElementById('f-dob').value;
+      const combo   = document.getElementById('f-combo').value.trim();
+      const achieve = document.getElementById('f-achieve').value.trim();
+      const exp     = document.getElementById('f-exp').value.trim();
+      if (!name || !dob || !combo || !achieve || !exp) { valid = false; }
+      record = { name, dob, combo, achieve, exp };
+      // clear
+      ['f-name','f-dob','f-combo','f-achieve','f-exp'].forEach(id => {
+        document.getElementById(id).value = '';
+      });
+    } else if (type === 'student') {
+      const name  = document.getElementById('s-name').value.trim();
+      const combo = document.getElementById('s-combo').value.trim();
+      const roll  = document.getElementById('s-roll').value.trim();
+      const dob   = document.getElementById('s-dob').value;
+      const email = document.getElementById('s-email').value.trim();
+      if (!name || !combo || !roll || !dob || !email) { valid = false; }
+      record = { name, combo, roll, dob, email };
+      welcomeMsg = 'WELCOME.';
+      ['s-name','s-combo','s-roll','s-dob','s-email'].forEach(id => {
+        document.getElementById(id).value = '';
+      });
+    } else if (type === 'others') {
+      const name = document.getElementById('o-name').value.trim();
+      const work = document.getElementById('o-work').value.trim();
+      if (!name || !work) { valid = false; }
+      record = { name, work };
+      ['o-name','o-work'].forEach(id => {
+        document.getElementById(id).value = '';
+      });
+    }
+
+    if (!valid) {
+      alert('⚠ Please fill in all fields before submitting.');
+      return;
+    }
+
+    data[type].push(record);
+    console.log(`[${type.toUpperCase()}] Stored record:`, record);
+    console.log(`Total ${type} records:`, data[type].length);
+
+    updateCounters();
+    checkCapacity();
+
+    document.getElementById('modal-welcome-msg').textContent = welcomeMsg;
+    document.getElementById('successModal').classList.add('show');
+  }
+
+  function closeModal() {
+    document.getElementById('successModal').classList.remove('show');
+  }
+</script>
+</body>
+</html>
